@@ -13,7 +13,6 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 		return;
 
 	height = compute_tree_height(tree);
-	printf("height: %lu\n", height);
 
 	for (level = 1; level <= height + 1; level++)
 		print_current_level(tree, level, func);
