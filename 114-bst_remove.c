@@ -1,5 +1,7 @@
 #include "binary_trees.h"
 
+static bst_t *bst_remove_with_one_child(bst_t *root, bst_t *temp);
+
 /**
  * bst_remove - Removes a node from a Binary Search Tree.
  * @root: Pointer to the root node of the tree where you will remove a node.
@@ -8,7 +10,7 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *min_node, *temp;
+	bst_t *min_node;
 
 	if (!root)
 		return (NULL);
@@ -23,45 +25,33 @@ bst_t *bst_remove(bst_t *root, int value)
 		{
 			free(root);
 			root = NULL;
+			return (root);
 		}
 		else if (!root->left)
-		{
-			temp = root->right;
-			if (temp)
-				temp->parent = root->parent;
-			free(root);
-			return (temp);
-		}
+			return (bst_remove_with_one_child(root, root->right));
 		else if (!root->right)
-		{
-			temp = root->left;
-			if (temp)
-				temp->parent = root->parent;
-			free(root);
-			return (temp);
-		}
-		else
-		{
-			min_node = get_min_node(root->right);
-			root->n = min_node->n;
-			root->right = bst_remove(root->right, root->n);
-		}
+			return (bst_remove_with_one_child(root, root->left));
+
+		min_node = get_min_node(root->right);
+		root->n = min_node->n;
+		root->right = bst_remove(root->right, root->n);
 	}
 
 	return (root);
 }
 
 /**
- * copy_child_and_delete - Copies the child node and deletes the parent node.
- * @parent: Pointer to the parent node.
- * @child: Pointer to the child node.
+ * bst_remove_with_one_child - Helper function to remove a node with one child.
+ * @root: The node to remove.
+ * @temp: The child node.
+ * Return: new node
  */
-void copy_child_and_delete(bst_t *parent, bst_t *child)
+static bst_t *bst_remove_with_one_child(bst_t *root, bst_t *temp)
 {
-	parent->n = child->n;
-	parent->left = child->left;
-	parent->right = child->right;
-	free(child);
+	if (temp)
+		temp->parent = root->parent;
+	free(root);
+	return (temp);
 }
 
 /**

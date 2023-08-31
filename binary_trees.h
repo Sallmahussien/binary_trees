@@ -72,7 +72,6 @@ bst_t *bst_insert(bst_t **tree, int value);
 bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *parent, int value);
-void copy_child_and_delete(bst_t *root, bst_t *child);
 bst_t *get_min_node(bst_t *root);
 
 #endif
