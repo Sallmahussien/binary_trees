@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include <limits.h>
 
 /**
  * struct binary_tree_s - Binary tree node
@@ -23,6 +24,12 @@ struct binary_tree_s
 };
 
 typedef struct binary_tree_s binary_tree_t;
+
+typedef struct binary_tree_s bst_t;
+
+typedef struct binary_tree_s avl_t;
+
+typedef struct binary_tree_s heap_t;
 
 /** print function */
 void binary_tree_print(const binary_tree_t *);
@@ -55,5 +62,12 @@ void print_current_level(const binary_tree_t *tree,
 						 size_t level, void (*func)(int));
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
+
+
+/** Binary Search Tree */
+int binary_tree_is_bst(const binary_tree_t *tree);
+int bst_helper(const binary_tree_t *node, int min, int max);
+bst_t *bst_insert(bst_t **tree, int value);
+
 
 #endif
