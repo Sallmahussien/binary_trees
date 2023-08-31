@@ -8,7 +8,7 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *min_node;
+	bst_t *min_node, *temp;
 
 	if (!root)
 		return (NULL);
@@ -25,9 +25,21 @@ bst_t *bst_remove(bst_t *root, int value)
 			root = NULL;
 		}
 		else if (!root->left)
-			copy_child_and_delete(root, root->right);
+		{
+			temp = root->right;
+			if (temp)
+				temp->parent = root->parent;
+			free(root);
+			return (temp);
+		}
 		else if (!root->right)
-			copy_child_and_delete(root, root->left);
+		{
+			temp = root->left;
+			if (temp)
+				temp->parent = root->parent;
+			free(root);
+			return (temp);
+		}
 		else
 		{
 			min_node = get_min_node(root->right);
