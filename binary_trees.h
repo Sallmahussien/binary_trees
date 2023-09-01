@@ -75,4 +75,9 @@ bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *parent, int value);
 bst_t *get_min_node(bst_t *root);
 
+
+/** Binary Heap */
+int binary_tree_is_heap(const binary_tree_t *tree);
+int is_max_heap(const binary_tree_t *tree);
+
 #endif
