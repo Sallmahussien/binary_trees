@@ -80,7 +80,7 @@ bst_t *get_min_node(bst_t *root);
 int binary_tree_is_heap(const binary_tree_t *tree);
 int is_max_heap(const binary_tree_t *tree);
 heap_t *heap_insert(heap_t **root, int value);
-heap_t *find_insertion_parent(heap_t *root);
-void heapify(binary_tree_t *node);
+void swap(heap_t **arg_node, heap_t **arg_child);
+int height(const binary_tree_t *tree);
 
 #endif
