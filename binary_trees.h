@@ -82,5 +82,6 @@ int is_max_heap(const binary_tree_t *tree);
 heap_t *heap_insert(heap_t **root, int value);
 void swap(heap_t **arg_node, heap_t **arg_child);
 int height(const binary_tree_t *tree);
+heap_t *array_to_heap(int *array, size_t size);
 
 #endif
